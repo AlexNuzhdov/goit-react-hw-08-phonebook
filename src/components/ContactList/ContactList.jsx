@@ -1,4 +1,4 @@
-import { Li, Ul } from './ContactList.styled';
+import { Li, Ul, Button } from './ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts, getFilter } from 'redux/contacts/selectors'
 import { deleteContact } from 'redux/contacts/operations';
@@ -21,14 +21,14 @@ export const ContactList = () => {
         <Li key={contact.id}>
           {contact.name} : {contact.number}
           {
-            <button
+            <Button
               
               type="button"
               name="delte"
               onClick= {() => dispatch(deleteContact(contact.id))}
             >
               delete
-            </button>
+            </Button>
           }
         </Li>
       ))}

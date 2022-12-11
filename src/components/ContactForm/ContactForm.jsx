@@ -6,6 +6,7 @@ import { addContact } from 'redux/contacts/operations';
 import { getContacts, getIsLoading, getError} from 'redux/contacts/selectors';
 
 
+
 export function ContactForm() {
    
    const [name, setName] = useState('');
@@ -83,7 +84,8 @@ export function ContactForm() {
         <Form onSubmit = {handleSubmit}>
             <Label>
                 Name
-                <input
+            <input
+               label="Name"
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -93,8 +95,9 @@ export function ContactForm() {
                 required/>
             </Label>
             <Label>
-                Number
+                 Number
             <input
+               label="Namber"
                 type="tel"
                 name="number"
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -104,7 +107,9 @@ export function ContactForm() {
                 required/>
             </Label>
                 
-            <button type='submit'>Add contact</button>
+          <button variant="contained" type="submit" sx={{ mt: '5px' }}>
+            Add contact
+          </button>
             
          </Form>
        }
