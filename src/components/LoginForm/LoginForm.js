@@ -1,14 +1,22 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import css from './LoginForm.module.css';
 import { Button, TextField } from '@mui/material';
+import { LoaderComponent } from 'components/Loader/Loader';
+import { getIsLoggedIn } from 'redux/auth/selectors';
+
+
+
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoggedIn);
 
-  const handleSubmit = e => {
+
+ const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
+  
     dispatch(
       logIn({
         email: form.elements.email.value,
@@ -31,15 +39,18 @@ export const LoginForm = () => {
           <TextField
             label="Password"
             variant="outlined"
-            type="email"
-            name="email"
+            type="password"
+            name="password"
             required
-          />
-
-      <Button variant="contained" type="submit" sx={{  mt: '10px' }}>
+      />
+      
+       {!isLoading && (
+        <Button variant="contained" type="submit" sx={{  mt: '10px' }}>
             Log In
-          </Button>
-        </form>
+        </Button>
+       )}
+        {isLoading && <LoaderComponent />}
+    </form>
     
   );
 };

@@ -1,5 +1,5 @@
 // import { ContactForm } from './ContactForm/ContactForm';
-import {useEffect} from 'react'
+// import {useEffect} from 'react'
 // import {ContactList} from './ContactList/ContactList'
 // import { Filter } from './Filter/Filter';
 // import { Container } from './Container/Container';
@@ -12,32 +12,30 @@ import { RegisterPage } from 'redux/pages/Registration';
 import {  LoginPage } from 'redux/pages/Login';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute} from './PrivateRoute';
-import {  ContactsPage } from 'redux/pages/Contacts';
-import { refreshUser } from 'redux/auth/operations'
-import { getIsRefreshing } from 'redux/auth/selectors';
+import { ContactsPage } from 'redux/pages/Contacts/Contacts';
+import { NotFound } from './NotFound/NotFound';
+
+// import { getIsRefreshing } from 'redux/auth/selectors';
 import { Layout } from './Layout';
-import {Loader } from './Loader';
-import { useDispatch, useSelector} from 'react-redux';
+
+// import { useDispatch} from 'react-redux';
 
 
 
 export const App = () => {
 
-  const dispatch = useDispatch();
-  const isRefreshing = useSelector(getIsRefreshing);
+  // const dispatch = useDispatch();
+  // const isRefreshing = useSelector(getIsRefreshing);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
 
 
-  return isRefreshing ? (
+  return (
  
-      <Loader />
-
-  ) : (
-      
-    <Routes>
+    
+  <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
@@ -65,7 +63,13 @@ export const App = () => {
           }
         />
       </Route>
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route
+           path="*"
+          element={
+            <PrivateRoute redirectTo="/login" component={<NotFound/>} />
+          }
+        />
+      
     </Routes>
   );
   

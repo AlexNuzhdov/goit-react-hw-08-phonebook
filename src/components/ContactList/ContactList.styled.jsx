@@ -16,7 +16,7 @@ padding:0;
 display: flex;
 justify-content: center;
 flex-direction: column;
-margin-left: 530px;
+// margin-left: 530px;
 
 
 `

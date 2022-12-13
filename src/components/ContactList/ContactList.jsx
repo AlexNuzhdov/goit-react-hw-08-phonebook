@@ -1,8 +1,10 @@
-import { Li, Ul, Button } from './ContactList.styled';
+import { Li, Ul, Button} from './ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts, getFilter } from 'redux/contacts/selectors'
 import { deleteContact } from 'redux/contacts/operations';
-
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/contacts/operations';
+;
 
 export const ContactList = () => {
 
@@ -12,6 +14,10 @@ export const ContactList = () => {
 
   const getVisiblContacts = contacts.filter(contact =>
 		contact.name.toLowerCase().includes(filter.toLowerCase()))
+
+    useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
 
   return (
@@ -28,6 +34,7 @@ export const ContactList = () => {
               onClick= {() => dispatch(deleteContact(contact.id))}
             >
               delete
+              
             </Button>
           }
         </Li>
@@ -37,3 +44,5 @@ export const ContactList = () => {
   
     
 };
+
+

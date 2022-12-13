@@ -1,0 +1,13 @@
+.div {
+    max-width: 320px;
+    margin: 20px auto;
+    padding: 10px 40px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+     #0000004d 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 5px;
+}
+.p {
+font-size: 1.3rem;
+    font-weight: 500;
+    color: black;
+}
