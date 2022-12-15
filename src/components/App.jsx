@@ -1,5 +1,5 @@
 // import { ContactForm } from './ContactForm/ContactForm';
-// import {useEffect} from 'react'
+import {useEffect} from 'react'
 // import {ContactList} from './ContactList/ContactList'
 // import { Filter } from './Filter/Filter';
 // import { Container } from './Container/Container';
@@ -15,25 +15,29 @@ import { PrivateRoute} from './PrivateRoute';
 import { ContactsPage } from 'redux/pages/Contacts/Contacts';
 import { NotFound } from './NotFound/NotFound';
 
-// import { getIsRefreshing } from 'redux/auth/selectors';
+import { getIsRefreshing } from 'redux/auth/selectors';
 import { Layout } from './Layout';
 
-// import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
+import { LoaderComponent } from './Loader/Loader'
+import {refreshUser} from 'redux/auth/operations'
 
 
 
 export const App = () => {
 
-  // const dispatch = useDispatch();
-  // const isRefreshing = useSelector(getIsRefreshing);
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(getIsRefreshing);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
 
-  return (
+  return (isRefreshing ? 
  
+    <LoaderComponent/>  
+    :
     
   <Routes>
       <Route path="/" element={<Layout />}>
@@ -70,7 +74,8 @@ export const App = () => {
           }
         />
       
-    </Routes>
+      </Routes>
+  
   );
   
 }
